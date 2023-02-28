@@ -44,8 +44,6 @@ parameters:
   assign_public_ip:
     type: boolean
     default: false
-  server_group:
-    type: string
 
 conditions:
   public_ip: { get_param: assign_public_ip }
