@@ -68,7 +68,7 @@ resources:
           volume_id: { get_resource: vol }
           delete_on_termination: true
       networks:
-        - network: qserv
+        - network: test
   
   extra_vol:
     condition: extra_volume
