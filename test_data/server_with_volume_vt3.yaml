@@ -44,8 +44,6 @@ parameters:
   assign_public_ip:
     type: boolean
     default: false
-  server_group:
-    type: string
 
 conditions:
   public_ip: { get_param: assign_public_ip }
@@ -69,20 +67,7 @@ resources:
           delete_on_termination: true
       networks:
         - network: qserv
-      scheduler_hints:
-        group: { get_param: server_group }
-      
-  pub_ip:
-    condition: public_ip 
-    type: OS::Neutron::FloatingIP
-    properties:
-      floating_network: { get_param: external_net }
-  pub_ip_association:
-    condition: public_ip 
-    type: OS::Neutron::FloatingIPAssociation
-    properties:
-      floatingip_id: { get_resource: pub_ip }
-      port_id: {get_attr: [srv, addresses, {get_param: net}, 0, port]}
+  
   extra_vol:
     condition: extra_volume
     type: OS::Cinder::Volume
@@ -95,8 +80,3 @@ resources:
     properties:
       instance_uuid: { get_resource: srv } 
       volume_id: { get_resource: extra_vol }
-      
-outputs:
-  first_address:
-    description: Private IP
-    value: { get_attr: [srv, first_address] }
