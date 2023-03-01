@@ -69,8 +69,6 @@ resources:
           delete_on_termination: true
       networks:
         - network: qserv
-      scheduler_hints:
-        group: { get_param: server_group }
       
   pub_ip:
     condition: public_ip 
