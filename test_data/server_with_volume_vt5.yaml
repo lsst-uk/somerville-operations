@@ -82,3 +82,8 @@ resources:
     properties:
       instance_uuid: { get_resource: srv } 
       volume_id: { get_resource: extra_vol }
+
+outputs:
+  first_address:
+    description: Private IP
+    value: { get_attr: [srv, first_address] }
