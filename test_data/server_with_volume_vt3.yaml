@@ -69,7 +69,7 @@ resources:
           delete_on_termination: true
       networks:
         - network: qserv
-      
+  
   extra_vol:
     condition: extra_volume
     type: OS::Cinder::Volume
