@@ -69,7 +69,7 @@ resources:
           delete_on_termination: true
       networks:
         - network: test
-  
+      
   extra_vol:
     condition: extra_volume
     type: OS::Cinder::Volume
@@ -82,8 +82,3 @@ resources:
     properties:
       instance_uuid: { get_resource: srv } 
       volume_id: { get_resource: extra_vol }
-
-outputs:
-  first_address:
-    description: Private IP
-    value: { get_attr: [srv, first_address] }
