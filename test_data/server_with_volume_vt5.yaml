@@ -69,8 +69,6 @@ resources:
           delete_on_termination: true
       networks:
         - network: test
-      scheduler_hints:
-        group: { get_param: server_group }
   extra_vol:
     condition: extra_volume
     type: OS::Cinder::Volume
