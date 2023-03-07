@@ -71,17 +71,7 @@ resources:
         - network: test
       scheduler_hints:
         group: { get_param: server_group }
-  pub_ip:
-    condition: public_ip 
-    type: OS::Neutron::FloatingIP
-    properties:
-      floating_network: { get_param: external_net }
-  pub_ip_association:
-    condition: public_ip 
-    type: OS::Neutron::FloatingIPAssociation
-    properties:
-      floatingip_id: { get_resource: pub_ip }
-      port_id: {get_attr: [srv, addresses, {get_param: net}, 0, port]}
+
   extra_vol:
     condition: extra_volume
     type: OS::Cinder::Volume
