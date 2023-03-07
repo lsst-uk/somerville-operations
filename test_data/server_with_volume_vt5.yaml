@@ -68,7 +68,10 @@ resources:
           volume_id: { get_resource: vol }
           delete_on_termination: true
       networks:
-        - network: test
+        # if share_net was left as default then set it to the same as net and remove duplicates to get rid of it
+        list_concat_unique: 
+          - [ network: { get_param: net } ]
+          - [ network: { str_replace: { template: { get_param: share_net }, params: { PLACEHOLDER: { get_param: net } } } } ]
   pub_ip:
     condition: public_ip 
     type: OS::Neutron::FloatingIP
