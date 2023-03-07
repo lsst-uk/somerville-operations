@@ -71,7 +71,6 @@ resources:
         - network: test
       scheduler_hints:
         group: { get_param: server_group }
-
   extra_vol:
     condition: extra_volume
     type: OS::Cinder::Volume
