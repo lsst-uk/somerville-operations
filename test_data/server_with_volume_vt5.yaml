@@ -46,6 +46,8 @@ parameters:
     default: false
   server_group:
     type: string
+  scheduler_hints:
+    group: { get_param: server_group }
 
 conditions:
   public_ip: { get_param: assign_public_ip }
